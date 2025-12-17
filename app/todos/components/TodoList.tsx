@@ -4,7 +4,7 @@ type Todo = {
   id: number;
   title: string;
   status: string;
-  comments:string;
+  comments:string[];
 };
 
 type Props = {

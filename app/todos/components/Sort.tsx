@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+type Props = {
+  sortType: "id" | "name";
+  setSortType: (value: "id" | "name") => void;
+};
 
-const Sort = () => {
-  const [sortType, setSortType] = useState("id");
-
+const Sort = ({ sortType, setSortType }: Props) => {
   return (
     <select
       value={sortType}
-      onChange={(e) => setSortType(e.target.value)}
+      onChange={(e) => setSortType(e.target.value as "id" | "name")}
     >
       <option value="id">id順</option>
       <option value="name">名前順</option>

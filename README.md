@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+TODO App（Next.js + Supabase）
 
-## Getting Started
+シンプルな TODO 管理アプリです。
+ログイン / サインアップ機能付きで、タスクの作成・編集・削除ができます。
 
-First, run the development server:
+🔗 デモURL（Vercel）
+https://todo-app-bay-five-19.vercel.app/login
 
-```bash
+✨ 主な機能
+
+ユーザー認証（ログイン / サインアップ）
+
+TODO一覧表示
+
+TODO作成・編集・削除
+
+TODO詳細ページ
+
+認証エラーの日本語表示
+
+ログイン状態に応じた画面遷移
+
+🛠 使用技術
+
+Frontend
+
+Next.js (App Router)
+
+TypeScript
+
+Tailwind CSS
+
+Backend / Auth
+
+Supabase
+
+Hosting
+
+Vercel
+
+Version Control
+
+Git / GitHub
+
+画面構成
+画面	URL
+ログイン	/login
+サインアップ	/signup
+TODO一覧	/todos
+TODO詳細	/todos/[id]
+TODO編集	/todos/[id]/edit
+テスト用アカウント
+メールアドレス: test@111
+パスワード: 123456
+
+ローカル起動方法
+git clone https://github.com/shimizu1203-hub/TODO-app.git
+cd TODO-app
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ブラウザで以下にアクセス
+http://localhost:3000/login
+ 環境変数
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+.env.local に以下を設定してください。
 
-## Learn More
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 
-To learn more about Next.js, take a look at the following resources:
+工夫した点
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ログイン失敗時のエラーメッセージを日本語化
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ログイン中はボタンを無効化して多重送信防止
 
-## Deploy on Vercel
+ログイン / サインアップ画面を分離し、UXを改善
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+コンポーネント単位で責務を分離（Auth / Todo）
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+今後の改善予定
+
+ログイン済みユーザーのガード処理
+
+TODOの期限・優先度追加
+
+コメント機能の拡張
+
+UIアニメーション追加

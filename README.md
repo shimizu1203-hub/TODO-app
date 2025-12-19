@@ -43,14 +43,24 @@ Version Control
 Git / GitHub
 
 画面構成
+
 画面	URL
+
+
 ログイン	/login
+
 サインアップ	/signup
+
 TODO一覧	/todos
+
 TODO詳細	/todos/[id]
+
 TODO編集	/todos/[id]/edit
+
 テスト用アカウント
+
 メールアドレス: test@111
+
 パスワード: 123456
 
 ローカル起動方法

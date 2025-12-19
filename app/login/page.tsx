@@ -1,63 +1,78 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../lib/auth";
 
 export default function LoginPage() {
-  const { user, loading, signIn } = useAuth();
+  const { signIn } = useAuth();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    if (!loading && user) router.replace("/todos");
-  }, [loading, user, router]);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const onLogin = async () => {
-    await signIn(email, password);
-    router.push("/todos");
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg(null);
+    setSubmitting(true);
+
+    try {
+      await signIn(email, password);
+      router.push("/todos");
+    } catch (err: any) {
+      // Supabaseのエラーは err.message が入ることが多い
+      setErrorMsg(err?.message ?? "ログインに失敗しました");
+    } finally {
+      setSubmitting(false);
+    }
   };
-
-  if (loading) return <p className="p-6">Loading...</p>;
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="w-full max-w-md">
-        <h1 className="text-center text-2xl font-bold mb-6">ログイン</h1>
+      <form onSubmit={handleLogin} className="w-full max-w-md space-y-4">
+        <h1 className="text-center text-2xl font-bold">ログイン</h1>
 
-        <div className="space-y-3">
-          <input
-            className="w-full border rounded px-3 py-2"
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            className="w-full border rounded px-3 py-2"
-            placeholder="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <input
+          className="w-full border rounded px-4 py-3"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          autoComplete="email"
+        />
+        <input
+          className="w-full border rounded px-4 py-3"
+          placeholder="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
+        />
 
-          <button
-            className="w-full bg-blue-600 text-white rounded py-2 hover:opacity-90"
-            onClick={onLogin}
-          >
-            ログイン
-          </button>
-        </div>
+        {errorMsg && (
+          <div className="border border-red-300 bg-red-50 text-red-700 rounded px-4 py-3">
+            {errorMsg}
+          </div>
+        )}
 
-        <p className="text-center text-sm mt-4">
+        <button
+          type="submit"
+          disabled={submitting}
+          className="w-full bg-blue-600 text-white rounded px-4 py-3 disabled:opacity-60"
+        >
+          {submitting ? "ログイン中..." : "ログイン"}
+        </button>
+
+        <p className="text-center text-sm">
           アカウントがない？{" "}
           <Link className="underline" href="/signup">
             サインアップ
           </Link>
         </p>
-      </div>
+      </form>
     </div>
   );
 }

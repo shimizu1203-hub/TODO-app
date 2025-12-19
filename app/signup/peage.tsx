@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../lib/auth";
 
-export default function LoginPage() {
-  const { user, loading, signIn } = useAuth();
+export default function SignupPage() {
+  const { user, loading, signUp } = useAuth();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -16,8 +16,10 @@ export default function LoginPage() {
     if (!loading && user) router.replace("/todos");
   }, [loading, user, router]);
 
-  const onLogin = async () => {
-    await signIn(email, password);
+  const onSignup = async () => {
+    await signUp(email, password);
+    // Email確認OFFならそのままログイン状態になることが多い
+    // Email確認ONなら /login へ誘導して「メール確認してね」にするのが一般的
     router.push("/todos");
   };
 
@@ -26,7 +28,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-md">
-        <h1 className="text-center text-2xl font-bold mb-6">ログイン</h1>
+        <h1 className="text-center text-2xl font-bold mb-6">サインアップ</h1>
 
         <div className="space-y-3">
           <input
@@ -44,17 +46,17 @@ export default function LoginPage() {
           />
 
           <button
-            className="w-full bg-blue-600 text-white rounded py-2 hover:opacity-90"
-            onClick={onLogin}
+            className="w-full bg-green-600 text-white rounded py-2 hover:opacity-90"
+            onClick={onSignup}
           >
-            ログイン
+            サインアップ
           </button>
         </div>
 
         <p className="text-center text-sm mt-4">
-          アカウントがない？{" "}
-          <Link className="underline" href="/signup">
-            サインアップ
+          すでにアカウントある？{" "}
+          <Link className="underline" href="/login">
+            ログイン
           </Link>
         </p>
       </div>

@@ -24,11 +24,17 @@ export default function LoginPage() {
       await signIn(email, password);
       router.push("/todos");
     } catch (err: any) {
-      // Supabaseのエラーは err.message が入ることが多い
-      setErrorMsg(err?.message ?? "ログインに失敗しました");
-    } finally {
-      setSubmitting(false);
-    }
+  const message = err?.message ?? "";
+
+  if (message.includes("Invalid login credentials")) {
+    setErrorMsg("メールアドレスまたはパスワードが間違っています");
+  } else if (message.includes("Email not confirmed")) {
+    setErrorMsg("メールアドレスの確認が完了していません");
+  } else {
+    setErrorMsg("ログインに失敗しました");
+  }
+}
+
   };
 
   return (

@@ -40,7 +40,7 @@ https://todo-app-bay-five-19.vercel.app/login
 ## 📱 画面構成
 
 | 画面 | URL |
-|---|---|
+| --- | --- |
 | ログイン | `/login` |
 | サインアップ | `/signup` |
 | TODO一覧 | `/todos` |
@@ -64,17 +64,14 @@ cd TODO-app
 npm install
 npm run dev
 
-
-⸻
+ブラウザで以下にアクセスしてください。
+http://localhost:3000/login
 
 ⚙️ 環境変数
 
 .env.local に以下を設定してください。
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-
-
-⸻
 
 💡 工夫した点
 	•	ログイン失敗時のエラーメッセージを日本語化

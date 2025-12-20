@@ -58,32 +58,38 @@ https://todo-app-bay-five-19.vercel.app/login
 
 ## 🚀 ローカル起動方法
 
-```bash
-git clone https://github.com/shimizu1203-hub/TODO-app.git
-cd TODO-app
-npm install
-npm run dev
+    git clone https://github.com/shimizu1203-hub/TODO-app.git
+    cd TODO-app
+    npm install
+    npm run dev
 
 ブラウザで以下にアクセスしてください。
+
 http://localhost:3000/login
 
-⚙️ 環境変数
+---
+
+## ⚙️ 環境変数
 
 .env.local に以下を設定してください。
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 
-💡 工夫した点
-	•	ログイン失敗時のエラーメッセージを日本語化
-	•	ログイン中はボタンを無効化して多重送信を防止
-	•	ログイン / サインアップ画面を分離し、UXを改善
-	•	コンポーネント単位で責務を分離（Auth / Todo）
+    NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 
-⸻
+---
 
-🔮 今後の改善予定
-	•	ログイン済みユーザーのガード処理
-	•	TODOの期限・優先度追加
-	•	コメント機能の拡張
-	•	UIアニメーション追加
+## 💡 工夫した点
 
+- ログイン失敗時のエラーメッセージを日本語化
+- ログイン中はボタンを無効化して多重送信を防止
+- ログイン / サインアップ画面を分離し、UXを改善
+- コンポーネント単位で責務を分離（Auth / Todo）
+
+---
+
+## 🔮 今後の改善予定
+
+- ログイン済みユーザーのガード処理
+- TODOの期限・優先度追加
+- コメント機能の拡張
+- UIアニメーション追加

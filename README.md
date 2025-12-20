@@ -64,11 +64,17 @@ cd TODO-app
 npm install
 npm run dev
 
+
+⸻
+
 ⚙️ 環境変数
 
 .env.local に以下を設定してください。
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+
+
+⸻
 
 💡 工夫した点
 	•	ログイン失敗時のエラーメッセージを日本語化
@@ -76,8 +82,11 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 	•	ログイン / サインアップ画面を分離し、UXを改善
 	•	コンポーネント単位で責務を分離（Auth / Todo）
 
+⸻
+
 🔮 今後の改善予定
 	•	ログイン済みユーザーのガード処理
 	•	TODOの期限・優先度追加
 	•	コメント機能の拡張
 	•	UIアニメーション追加
+
